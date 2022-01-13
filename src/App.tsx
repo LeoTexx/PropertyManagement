@@ -1,25 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Header } from "./components/Header";
+import { ReviewsList } from "./components/ReviewsList";
+import { fetchReviews } from "./libs/redux/reducers/reviewSlice";
+import { GlobalStyle } from "./styles/global";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchReviews());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <ReviewsList />
+      <GlobalStyle />
+    </>
   );
 }
 
